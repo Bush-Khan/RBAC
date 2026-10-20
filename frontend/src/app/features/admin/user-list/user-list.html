@@ -1,0 +1,53 @@
+<div class="user-list-container">
+    <h2>All Users</h2>
+
+    @if (actionMessage()) {
+    <div class="success-message">{{ actionMessage() }}</div>
+    }
+
+    @if (isLoading()) {
+    <p>Loading users...</p>
+    } @else if (errorMessage()) {
+    <div class="server-error">{{ errorMessage() }}</div>
+    } @else {
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Role</th>
+                @if (authService.hasRole('admin')) {
+                <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (u of users(); track u._id) {
+            <tr>
+                <td>{{ u.firstname }} {{ u.lastname }}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.mobilenumber }}</td>
+                <td><span class="role-badge">{{ u.role }}</span></td>
+
+                @if (authService.hasRole('admin')) {
+                <td class="actions">
+                    @if (u.role !== 'admin') {
+                    <select (change)="onRoleChange(u._id, $any($event.target).value)">
+                        <option value="user" [selected]="u.role === 'user'">user</option>
+                        <option value="moderator" [selected]="u.role === 'moderator'">moderator</option>
+                        <option value="admin">admin</option>
+                    </select>
+
+                    <button class="delete-btn" (click)="onDeleteUser(u._id, u.firstname)">Delete</button>
+                    } @else {
+                    <span class="protected-note">Protected</span>
+                    }
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
+</div>

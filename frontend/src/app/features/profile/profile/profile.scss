@@ -1,0 +1,46 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 2rem;
+}
+
+.profile-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+
+    h2 {
+        font-family: 'Space Grotesk', sans-serif;
+        margin: 0 0 0.5rem;
+    }
+
+    .role-badge {
+        display: inline-block;
+        background: var(--accent-light);
+        color: var(--accent);
+        padding: 0.2rem 0.7rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-top: 1px solid var(--line);
+
+        .label {
+            color: var(--ink-soft);
+            font-size: 0.85rem;
+        }
+
+        .value {
+            font-weight: 500;
+        }
+    }
+}

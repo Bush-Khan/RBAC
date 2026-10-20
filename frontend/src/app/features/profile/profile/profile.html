@@ -1,0 +1,22 @@
+<div class="profile-container">
+    @if (isLoading()) {
+    <p>Loading profile...</p>
+    } @else if (errorMessage()) {
+    <div class="server-error">{{ errorMessage() }}</div>
+    } @else if (data()) {
+    <div class="profile-card">
+        <h2>{{ data()?.firstname }} {{ data()?.lastname }}</h2>
+        <span class="role-badge">{{ data()?.role }}</span>
+
+        <div class="detail-row">
+            <span class="label">Email</span>
+            <span class="value">{{ data()?.email }}</span>
+        </div>
+
+        <div class="detail-row">
+            <span class="label">Mobile</span>
+            <span class="value">{{ data()?.mobilenumber }}</span>
+        </div>
+    </div>
+    }
+</div>

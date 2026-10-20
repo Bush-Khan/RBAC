@@ -1,0 +1,108 @@
+.user-list-container {
+    padding: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    h2 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+
+    th,
+    td {
+        text-align: left;
+        padding: 0.85rem 1rem;
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--line);
+    }
+
+    th {
+        background: var(--accent-light);
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: capitalize;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background: #fafafa;
+    }
+}
+
+.role-badge {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 0.2rem 0.65rem;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    select {
+        padding: 0.4rem 0.6rem;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        background: #fff;
+    }
+
+    .delete-btn {
+        background: var(--danger-light);
+        color: var(--danger);
+        border: none;
+        padding: 0.4rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+
+        &:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+    }
+
+    .protected-note {
+        color: var(--ink-soft);
+        font-size: 0.8rem;
+        font-style: italic;
+    }
+}
+
+.success-message {
+    background: var(--success-light);
+    color: var(--success);
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.server-error {
+    background: var(--danger-light);
+    color: var(--danger);
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}

@@ -1,0 +1,25 @@
+<nav class="navbar">
+    <div class="brand">RBAC Access Manager</div>
+
+    @if (authService.isLoggedIn()) {
+    <div class="nav-links">
+        <span class="user-info">
+            {{ authService.user()?.firstname }}
+            <span class="role-badge">{{ authService.role() }}</span>
+        </span>
+
+        <a routerLink="/profile" routerLinkActive="active-link">Profile</a>
+
+        @if (authService.hasRole('admin', 'moderator')) {
+        <a routerLink="/admin/users">Manage Users</a>
+        }
+
+        <button (click)="authService.logout()">Logout</button>
+    </div>
+    } @else {
+    <div class="nav-links">
+        <a routerLink="/login">Login</a>
+        <a routerLink="/signup">Sign Up</a>
+    </div>
+    }
+</nav>

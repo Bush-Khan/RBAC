@@ -1,0 +1,225 @@
+:root {
+    --paper: #F7F7F5;
+    --ink: #161A22;
+    --ink-soft: #4A5160;
+    --accent: #3454D1;
+    --accent-light: #EDF1FD;
+    --line: #DEE1E6;
+    --danger: #C23B3B;
+    --danger-light: #FBEAEA;
+    --success: #1E7A54;
+    --success-light: #E7F5EE;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+}
+
+.auth-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.auth-visual {
+    flex: 0 0 40%;
+    background: var(--ink);
+    color: #fff;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .brand {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 1.15rem;
+        margin-bottom: 3rem;
+        letter-spacing: -0.01em;
+    }
+
+    .tier-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .tier {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 10px;
+        padding: 1rem 1.15rem;
+        background: rgba(255, 255, 255, 0.03);
+
+        .tier-role {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .tier-desc {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        &.tier-admin {
+            background: rgba(52, 84, 209, 0.18);
+            border-color: rgba(52, 84, 209, 0.4);
+            margin-left: 0;
+        }
+
+        &.tier-moderator {
+            margin-left: 1rem;
+        }
+
+        &.tier-user {
+            margin-left: 2rem;
+        }
+    }
+}
+
+.auth-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+
+    form {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    h2 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+
+    label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        color: var(--ink-soft);
+    }
+
+    input {
+        width: 100%;
+        padding: 0.7rem 0.85rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        background: #fff;
+        transition: border-color 0.15s ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+    }
+
+    .error {
+        display: block;
+        color: var(--danger);
+        font-size: 0.8rem;
+        margin-top: 0.35rem;
+    }
+}
+
+.server-error {
+    background: var(--danger-light);
+    color: var(--danger);
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.success-message {
+    background: var(--success-light);
+    color: var(--success);
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+button[type='submit'] {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+        opacity: 0.9;
+    }
+}
+
+.auth-panel p {
+    margin-top: 1.5rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    text-align: center;
+
+    a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-shell {
+        flex-direction: column;
+    }
+
+    .auth-visual {
+        flex: none;
+        padding: 1.5rem;
+
+        .tier-stack {
+            display: none;
+        }
+    }
+
+    .auth-panel {
+        padding: 1.5rem;
+    }
+}

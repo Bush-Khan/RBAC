@@ -1,0 +1,92 @@
+<div class="auth-shell">
+    <aside class="auth-visual">
+        <div class="brand">RBAC Access Manager</div>
+        <div class="tier-stack">
+            <div class="tier tier-admin">
+                <div class="tier-role">Admin</div>
+                <div class="tier-desc">Full control — manage users, assign roles, delete accounts</div>
+            </div>
+            <div class="tier tier-moderator">
+                <div class="tier-role">Moderator</div>
+                <div class="tier-desc">Read access to all users, no write permissions</div>
+            </div>
+            <div class="tier tier-user">
+                <div class="tier-role">User</div>
+                <div class="tier-desc">Access to their own profile only</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="auth-panel">
+        <form [formGroup]="signup" (ngSubmit)="onSubmit()">
+            <h2>Sign Up</h2>
+            <p class="subtitle">Create an account to get started</p>
+
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input id="firstname" type="text" formControlName="firstname" placeholder="First name" />
+                @if (signup.get('firstname')?.touched && signup.get('firstname')?.errors?.['required']) {
+                <span class="error">First name is required</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input id="lastname" type="text" formControlName="lastname" placeholder="Last name" />
+                @if (signup.get('lastname')?.touched && signup.get('lastname')?.errors?.['required']) {
+                <span class="error">Last name is required</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="email" placeholder="you@example.com" />
+                @if (signup.get('email')?.touched) {
+                @if (signup.get('email')?.errors?.['required']) {
+                <span class="error">Email is required</span>
+                } @else if (signup.get('email')?.errors?.['email']) {
+                <span class="error">Please enter a valid email address</span>
+                }
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="mobilenumber">Mobile Number</label>
+                <input id="mobilenumber" type="text" formControlName="mobilenumber"
+                    placeholder="10-digit mobile number" />
+                @if (signup.get('mobilenumber')?.touched) {
+                @if (signup.get('mobilenumber')?.errors?.['required']) {
+                <span class="error">Mobile number is required</span>
+                } @else if (signup.get('mobilenumber')?.errors?.['minlength']) {
+                <span class="error">Mobile number must be at least 10 digits</span>
+                }
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" formControlName="password" placeholder="Enter password" />
+                @if (signup.get('password')?.touched) {
+                @if (signup.get('password')?.errors?.['required']) {
+                <span class="error">Password is required</span>
+                } @else if (signup.get('password')?.errors?.['minlength']) {
+                <span class="error">Password must be at least 10 characters</span>
+                }
+                }
+            </div>
+
+            @if (errorMessage()) {
+            <div class="server-error">{{ errorMessage() }}</div>
+            }
+            @if (successMessage()) {
+            <div class="success-message">{{ successMessage() }}</div>
+            }
+
+            <button type="submit" [disabled]="isLoading()">
+                @if (isLoading()) { Creating account... } @else { Sign Up }
+            </button>
+
+            <p>Already have an account? <a routerLink="/login">Login</a></p>
+        </form>
+    </div>
+</div>

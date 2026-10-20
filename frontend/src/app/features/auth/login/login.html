@@ -1,0 +1,60 @@
+<div class="auth-shell">
+    <aside class="auth-visual">
+        <div class="brand">RBAC Access Manager</div>
+        <div class="tier-stack">
+            <div class="tier tier-admin">
+                <div class="tier-role">Admin</div>
+                <div class="tier-desc">Full control — manage users, assign roles, delete accounts</div>
+            </div>
+            <div class="tier tier-moderator">
+                <div class="tier-role">Moderator</div>
+                <div class="tier-desc">Read access to all users, no write permissions</div>
+            </div>
+            <div class="tier tier-user">
+                <div class="tier-role">User</div>
+                <div class="tier-desc">Access to their own profile only</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="auth-panel">
+        <form [formGroup]="login" (ngSubmit)="onSubmit()">
+            <h2>Login</h2>
+            <p class="subtitle">Log in to access your account</p>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter your email" id="email" formControlName="email" />
+                @if (login.get('email')?.touched) {
+                @if (login.get('email')?.errors?.['required']) {
+                <span class="error">Please enter email</span>
+                } @else if (login.get('email')?.errors?.['email']) {
+                <span class="error">Please enter a valid email address</span>
+                }
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" formControlName="password" />
+                @if (login.get('password')?.touched) {
+                @if (login.get('password')?.errors?.['required']) {
+                <span class="error">Please enter password</span>
+                } @else if (login.get('password')?.errors?.['minlength']) {
+                <span class="error">Password must be at least 6 characters</span>
+                }
+                }
+            </div>
+
+            @if (errorMessage()) {
+            <div class="server-error">{{ errorMessage() }}</div>
+            }
+
+            <button type="submit" [disabled]="isLoading()">
+                @if (isLoading()) { Logging in... } @else { Login }
+            </button>
+
+            <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+        </form>
+    </div>
+</div>
